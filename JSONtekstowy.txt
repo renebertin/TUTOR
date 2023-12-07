@@ -3,5 +3,10 @@
   	usernamevar": "TESTUSER",
   	"emailvar": "renebert@wp.pl",
   	"passwordvar": "Tester1999"
+	},
+	{
+  	usernamevar": "SAMPLETEACHER",
+  	"emailvar": "renebert@wp.pl",
+  	"passwordvar": "Tester1999"
 	}
 ]
