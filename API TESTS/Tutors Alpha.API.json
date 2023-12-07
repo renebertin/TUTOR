@@ -1,111 +1,238 @@
 {
-  "info": {
-    "_postman_id": "98b5a190-e5fd-4e2f-88c9-5dd1ecbbbf36",
-    "name": "Tutors Alpha",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "_exporter_id": "31409704"
-  },
-  "item": [
-    {
-      "name": "AUTORYZACJA",
-      "item": [
-        {
-          "name": "UserLogin",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "pm.test(\"Status code is 200\", function () {\r",
-                  "    pm.response.to.have.status(200);\r",
-                  "});\r",
-                  "pm.test(\"Successful POST request\", function () {\r",
-                  "    pm.expect(pm.response.code).to.be.oneOf([200, 202]);\r",
-                  "});\r",
-                  "\r",
-                  "const expectedSchema = \r",
-                  "{\r",
-                  "  \"type\": \"object\",\r",
-                  "  \"properties\": {\r",
-                  "    \"username\": {\r",
-                  "      \"type\": \"string\"\r",
-                  "    },\r",
-                  "    \"email\": {\r",
-                  "      \"type\": \"string\"\r",
-                  "    },\r",
-                  "    \"password\": {\r",
-                  "      \"type\": \"string\"\r",
-                  "    }\r",
-                  "  },\r",
-                  "  \"required\": [\r",
-                  "    \"username\",\r",
-                  "    \"email\",\r",
-                  "    \"password\"\r",
-                  "  ]\r",
-                  "\r",
-                  "}\r",
-                  "\r",
-                  "//pm.test(\"Verify Json Schema file\", function () {\r",
-                  "//    pm.response.to.have.jsonSchema(expectedSchema)\r",
-                  "//});\r",
-                  "\r",
-                  "pm.test(\"Your test name\", function () {\r",
-                  "    var jsonData = pm.response.json();\r",
-                  "    pm.expect(jsonData.roles).to.eql([2001]);\r",
-                  "});"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "",
-                  "type": "string"
-                }
-              ]
-            },
-            "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"username\": \"{{usernamevar}}\",\r\n  \"email\": \"{{emailvar}}\",\r\n  \"password\": \"{{passwordvar}}\"\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "https://tutorsalpha.herokuapp.com/api/auth/login",
-              "protocol": "https",
-              "host": ["tutorsalpha", "herokuapp", "com"],
-              "path": ["api", "auth", "login"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "TokenRefreshing",
-          "request": {
-            "method": "GET",
-            "header": []
-          },
-          "response": []
-        },
-        {
-          "name": "UserLogOut",
-          "request": {
-            "method": "GET",
-            "header": []
-          },
-          "response": []
-        }
-      ]
-    }
-  ]
+	"info": {
+		"_postman_id": "98b5a190-e5fd-4e2f-88c9-5dd1ecbbbf36",
+		"name": "Tutors Alpha",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31409704"
+	},
+	"item": [
+		{
+			"name": "AUTORYZACJA",
+			"item": [
+				{
+					"name": "UserLogin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 202]);\r",
+									"});\r",
+									"\r",
+									"const expectedSchema = \r",
+									"{\r",
+									"  \"type\": \"object\",\r",
+									"  \"properties\": {\r",
+									"    \"username\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"email\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"password\": {\r",
+									"      \"type\": \"string\"\r",
+									"    }\r",
+									"  },\r",
+									"  \"required\": [\r",
+									"    \"username\",\r",
+									"    \"email\",\r",
+									"    \"password\"\r",
+									"  ]\r",
+									"\r",
+									"}\r",
+									"\r",
+									"//pm.test(\"Verify Json Schema file\", function () {\r",
+									"//    pm.response.to.have.jsonSchema(expectedSchema)\r",
+									"//});\r",
+									"\r",
+									"pm.test(\"Your test name\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.roles).to.eql([2001]);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "\"accessToken\": \"1eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySW5mbyI6eyJyb2xlcyI6WzIwMDFdfSwiaWF0IjoxNzAxOTA3NDE4LCJleHAiOjE3MDE5OTM4MTh9.A0dcH5lUYy822n1pKdaTMW8m7Q4ZBMJb4A3WUoVz-OM\"",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"{{usernamevar}}\",\r\n  \"email\": \"{{emailvar}}\",\r\n  \"password\": \"{{passwordvar}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://tutorsalpha.herokuapp.com/api/auth/login",
+							"protocol": "https",
+							"host": [
+								"tutorsalpha",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TokenRefreshing",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://tutorsalpha.herokuapp.com/api/auth/refresh",
+							"protocol": "https",
+							"host": [
+								"tutorsalpha",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"auth",
+								"refresh"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UserLogOut",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "UŻYTKOWNICY",
+			"item": [
+				{
+					"name": "GetApiUsers",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Your test name\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.roles).to.eql(\"User\": 5150);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://tutorsalpha.herokuapp.com/api/users",
+							"protocol": "https",
+							"host": [
+								"tutorsalpha",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateUser",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Your test name\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.roles).to.eql([2001]);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"nazwa1usera\",\r\n  \"email\": \"test@test.pl\",\r\n  \"password\": \"gggg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://tutorsalpha.herokuapp.com/api/users",
+							"protocol": "https",
+							"host": [
+								"tutorsalpha",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
 }
