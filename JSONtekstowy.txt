@@ -1,0 +1,7 @@
+[
+	{
+  	usernamevar": "TESTUSER",
+  	"emailvar": "renebert@wp.pl",
+  	"passwordvar": "Tester1999"
+	}
+]
